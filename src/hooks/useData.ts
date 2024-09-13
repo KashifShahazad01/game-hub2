@@ -25,6 +25,6 @@ export const useData = <T>(endpoint: string) => {
         setIsLoading(false);
       });
     return () => controller.abort();
-  }, []);
+  }, [endpoint]);
   return { data, error, isLoading };
 };
