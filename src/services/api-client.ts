@@ -1,5 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { FetchingResponse } from "../hooks/useData";
+
+export interface FetchingResponse<T> {
+  count: number;
+  next: string | null;
+  results: T[];
+}
+
 const axiosIntance = axios.create({
   params: {
     key: "4f0dda9453774eb692eaff7a71059088",
