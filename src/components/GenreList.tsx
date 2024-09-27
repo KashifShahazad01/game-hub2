@@ -11,10 +11,10 @@ import { Genre, useGenre } from "../hooks/useGenre";
 import { OptimizeImages } from "../services/OptimizeImages";
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+export const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
   const { data, isLoading, error } = useGenre();
   if (isLoading) return <Spinner />;
   if (error) return null;
@@ -37,7 +37,7 @@ export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               <Button
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : ""}
+                fontWeight={selectedGenreId === genre.id ? "bold" : ""}
                 onClick={() => onSelectGenre(genre)}
                 fontSize={"lg"}
                 variant="link"

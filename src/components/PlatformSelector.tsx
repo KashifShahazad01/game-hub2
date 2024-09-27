@@ -8,19 +8,20 @@ import {
 } from "@chakra-ui/react";
 import { BsChevronBarDown } from "react-icons/bs";
 import usePlatffrom from "../hooks/usePlatform";
-import { Platform } from "../hooks/usePlatform";
 
 interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | null;
+  onSelectPlatform: (platformId: number) => void;
+  selectedPlatformId?: number;
 }
 
 export const PlatformSelector = ({
   onSelectPlatform,
-  selectedPlatform,
+  selectedPlatformId,
 }: Props) => {
   const { data, error, isLoading } = usePlatffrom();
-
+  const selectedPlatformName = data?.results.find(
+    (p) => p.id === selectedPlatformId
+  );
   if (error) return null;
 
   return (
@@ -29,14 +30,14 @@ export const PlatformSelector = ({
         <Spinner />
       ) : (
         <MenuButton as={Button} rightIcon={<BsChevronBarDown />}>
-          {selectedPlatform?.name || "Platform"}
+          {selectedPlatformName?.name || "Platform"}
         </MenuButton>
       )}
 
       <MenuList>
         {data?.results.map((platform) => (
           <MenuItem
-            onClick={() => onSelectPlatform(platform)}
+            onClick={() => onSelectPlatform(platform.id)}
             key={platform.id}
           >
             {platform.name}
