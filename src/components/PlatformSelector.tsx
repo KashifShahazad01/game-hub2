@@ -8,17 +8,13 @@ import {
 } from "@chakra-ui/react";
 import { BsChevronBarDown } from "react-icons/bs";
 import usePlatffrom from "../hooks/usePlatform";
+import useGameQueryStore from "../store";
 
-interface Props {
-  onSelectPlatform: (platformId: number) => void;
-  selectedPlatformId?: number;
-}
-
-export const PlatformSelector = ({
-  onSelectPlatform,
-  selectedPlatformId,
-}: Props) => {
+export const PlatformSelector = () => {
   const { data, error, isLoading } = usePlatffrom();
+  const selectedPlatformId = useGameQueryStore((s) => s.gameQuery.platformId);
+  const onSelectPlatform = useGameQueryStore((s) => s.setPlatformId);
+
   const selectedPlatformName = data?.results.find(
     (p) => p.id === selectedPlatformId
   );
