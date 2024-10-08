@@ -17,6 +17,7 @@ export interface Games {
 
 export const useGames = () => {
   const gameQuery = useGameQueryStore((s) => s.gameQuery);
+
   return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam = 1 }) =>
