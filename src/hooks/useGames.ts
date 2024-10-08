@@ -3,11 +3,15 @@ import ms from "ms";
 import APIClient from "../services/api-client";
 import { Platform } from "./usePlatform";
 import useGameQueryStore from "../store";
+import { Genre } from "./useGenre";
+import { Publisher } from "../entities/publisher";
 const apiClient = new APIClient<Games>("/games");
 export interface Games {
   id: number;
   name: string;
   slug: string;
+  genres: Genre[];
+  publisher: Publisher[];
   description_raw: string;
   background_image: string;
   metacritic: number;
