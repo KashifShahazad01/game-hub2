@@ -12,7 +12,7 @@ export const GameDetailsPage = () => {
   return (
     <>
       <Heading>{game?.name}</Heading>
-      <ExtendableText>{game?.description_raw}</ExtendableText>
+      <ExtendableText children={game?.description_raw} />
     </>
   );
 };
